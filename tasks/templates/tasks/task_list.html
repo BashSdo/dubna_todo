@@ -1,0 +1,31 @@
+<!-- templates/tasks/task_list.html -->
+
+{% extends "tasks/base.html" %}
+
+{% block content %}
+<a class="xdxd button is-primary" href="{% url 'add_task' %}">Add task</a>
+
+<style>
+a.xdxd {
+    margin: 10px auto;
+}
+</style>
+
+<ul>
+    {% for task in tasks %}
+    <li>
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ task.title }}
+                </p>
+            </header>
+            <footer class="card-footer">
+                <a class="card-footer-item button is-primary" href="{% url 'edit_task' task.id %}">Edit</a>
+                <a class="card-footer-item button is-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+            </footer>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!-- templates/tasks/task_confirm_delete.html -->
+
+{% extends "tasks/base.html" %}
+
+{% block content %}
+<div class="box">
+    <form class="form" method="post">
+        <h1>Are you sure you want to delete "{{ task.title }}"?</h1>
+        {% csrf_token %}
+        <div class="button-box">
+            <button class="button is-danger" type="submit">Yes, delete</button>
+            <a class="button is-secondary" href="{% url 'task_list' %}">No, cancel</a>
+        </div>
+    </form>
+
+    <style>
+        .box { display: flex; }
+        .form { margin: auto; max-width: 500px; }
+        .level { margin-top: 20px; }
+        .button-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .button-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</div>
+{% endblock %}
